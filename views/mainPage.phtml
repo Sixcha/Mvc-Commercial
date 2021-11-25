@@ -1,0 +1,39 @@
+             <?php if (isset($_SESSION["login"]) && $_SESSION["login"]=== 0) : ?>
+            <section>
+                <p>You need to login first</p>
+            </section>
+            <?php unset($_SESSION["login"]); ?>
+            <?php endif; ?>
+
+<label for="search">Recherche article : </label>
+        <input type="text" id="search">
+        
+        <section class="list_articles" id="articles">
+            <?php foreach ($results as $result):?>
+                <article class="row">
+                    <img class="image_article" src="uploads/<?= $result['art_img'] ?>" alt="image">
+                    <div>
+                        <h5><?= htmlspecialchars($result['art_title']) ?></h5>
+                        <h6><?= htmlspecialchars($result['art_undertitle']) ?></h6>
+                        <p><?= nl2br(htmlspecialchars($result['art_description'])) ?></p>
+                        <p>Prix moyen constaté ( hors FDP ) : <?= htmlspecialchars($result['art_price']) ?>€</p>
+                        <p>Sortie prévue : <?= htmlspecialchars(date_format(date_create(($result['art_date'])), 'd/m/Y'))?></p>
+                    </div>
+                    <form method="post">
+                        <select name="quantity" id="" value="Quantité" class="form" action="index.php?route=home">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <input type="hidden" name="articleId" value="<?= htmlspecialchars($result["art_id"])?>"/>
+                        </select>
+                        <input type="submit" value="Ajouter au Panier" class="form"/>
+                    </form>
+                </article>
+            <?php endforeach; ?>
+        </section>

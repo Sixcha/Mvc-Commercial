@@ -1,0 +1,60 @@
+        <section>
+          <p>Les messages d'erreur :</p>
+        <?php if (isset($errors) && count($errors) > 0) : ?>
+            <div>
+              <img src="../img/warning.gif" alt="Triangle warning"/>
+            </div>
+            <div>
+              <ul>
+                <?php foreach ($errors as $error) : ?>
+                  <li><?= $error; ?></li>
+                <?php endforeach; ?>
+              </ul>
+            </div>
+        <?php endif; ?>
+        
+        <?php if (isset($valids) && count($valids) > 0) : ?>
+              <div>
+                <img src="img/validation.png" alt="Validation"/>
+              </div>
+            <div>
+              <ul>
+                <?php foreach ($valids as $valid) : ?>
+                  <li><?= $valid; ?></li>
+                <?php endforeach; ?>
+              </ul>
+            </div>
+        <?php endif; ?>
+        </section>
+        
+        
+        
+        
+        
+        <form enctype="multipart/form-data" method="POST" action="index.php?route=signUp">
+            
+            <label for="firstName">Name</label>
+            <input type="text" name="firstName" value="Testname"/>
+            
+            <label for="lastName">Surname</label>
+            <input type="text" name="lastName" value="Testsurname"/>
+            
+            <label for="email">Email</label>
+            <input type="email" name="email" value="Testmail@test.fr"/>
+            
+            <label for="password">Password</label>
+            <input type="password" name="password" value="ab"/>
+            
+            <label for="passwordCheck">Confirm Password</label>
+            <input type="password" name="passwordCheck" value="ab"/>
+        
+            <fieldset class="avatar">
+                <label for="userAvatar">Votre avatar : </label>
+                <input type="file" name="userAvatar">
+                <small class="form-text text-muted">Sélectionnez une image : Formats ['jpg', 'jpeg', 'gif', 'png'].</small>
+            </fieldset>  
+            </br>
+            <input type="submit" value="Inscription" />
+        </form>
+        
+        

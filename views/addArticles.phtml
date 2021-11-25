@@ -1,0 +1,63 @@
+        <?php if (!isset($_SESSION["admin"]) || $_SESSION["admin"] !== "ADMIN") : ?>
+        <section>
+            <p>You must be logged in as an admin to access</p>
+        </section>
+        
+        <?php else : ?>
+        
+       <section>
+          <p>Les messages d'erreur :</p>
+        <?php if (isset($errors) && count($errors) > 0) : ?>
+            <div>
+              <img src="../img/warning.gif" alt="Triangle warning"/>
+            </div>
+            <div>
+              <ul>
+                <?php foreach ($errors as $error) : ?>
+                  <li><?= $error; ?></li>
+                <?php endforeach; ?>
+              </ul>
+            </div>
+        <?php endif; ?>
+        
+        <?php if (isset($valids) && count($valids) > 0) : ?>
+              <div>
+                <img src="img/validation.png" alt="Validation"/>
+              </div>
+            <div>
+              <ul>
+                <?php foreach ($valids as $valid) : ?>
+                  <li><?= $valid; ?></li>
+                <?php endforeach; ?>
+              </ul>
+            </div>
+        <?php endif; ?>
+        </section>
+        
+        <form enctype="multipart/form-data" method="POST" action="index.php?route=addArticles">
+            
+            <label for="title">Titre</label>
+            <input type="text" name="title" value="test title"/>
+            
+            <label for="undertitle">Titre Secondaire</label>
+            <input type="text" name="undertitle" value="test undertitle"/>
+            
+            <label for="description">Description</label>
+            <textarea name="description" id="" cols="30" rows="10" value="Bla bla bla"></textarea>
+            
+            <label for="releasedate">Date Prévu</label>
+            <input type="date" name="releasedate" value=""/>
+            
+            <label for="price">Prix</label>
+            <input type="text" name="price" value="10"/>
+        
+            <fieldset class="articlepic">
+                <label for="articlepic">Photo de L'article : </label>
+                <input type="file" name="articlepic">
+                <small class="form-text text-muted">Sélectionnez une image : Formats ['jpg', 'jpeg', 'gif', 'png'].</small>
+            </fieldset>  
+            </br>
+            <input type="submit" value="Add Article" />
+        </form>
+        
+        <?php endif; ?>

@@ -1,0 +1,22 @@
+        <form method="POST" action="index.php?route=connect">
+            <label for="email">Enter your Email</label>
+            <input type="text" name="email" value="Testmail@test.fr"/>
+            <label for="password">Enter your Password</label>
+            <input type="password" name="password" value="ab"/>
+            <input type="submit" value="Submit"/>
+        </form>
+        
+        <section>
+          <p>Les messages d'erreur :</p>
+        <?php if (isset($errors) && count($errors) > 0) : ?>
+            <div>
+              <img src="../img/warning.gif" alt="Triangle warning"/>
+            </div>
+            <div>
+              <ul>
+                <?php foreach ($errors as $error) : ?>
+                  <li><?= $error; ?></li>
+                <?php endforeach; ?>
+              </ul>
+            </div>
+        <?php endif; ?>

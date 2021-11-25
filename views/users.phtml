@@ -1,0 +1,37 @@
+        <?php if (!isset($_SESSION["admin"]) || $_SESSION["admin"] !== "ADMIN") : ?>
+        <section>
+            <p>You must be logged in as an admin to access</p>
+        </section>
+        
+        <?php else : ?>
+        
+        <section class="list_users">
+            <table>
+                <tr>
+                    <td>Avatar</td>
+                    <td>ID</td>
+                    <td>Prenom</td>
+                    <td>Nom</td>
+                    <td>Email</td>
+                    <td>Validé?</td>
+                    <td>Date de Création</td>
+                </tr>
+            <?php foreach ($results as $result):?>
+            <?php if ($result["user_role"]==="ADMIN") : ?>
+                <tr class="userAdmin">
+            <?php else: ?>
+                <tr>
+            <?php endif; ?>
+                    <td><img src="<?= $result["user_avatar"] ?>" alt="user avatar"></td>
+                    <td><?= $result["user_id"] ?></td>
+                    <td><?= htmlspecialchars($result["user_firstname"]) ?></td>
+                    <td><?= htmlspecialchars($result["user_lastname"]) ?></td>
+                    <td><?= htmlspecialchars($result["user_mail"]) ?></td>
+                    <td><?= $result["user_valid"] ?></td>
+                    <td><?= $result["user_create_time"] ?></td>
+                </tr>
+            <?php endforeach; ?>
+            </table>
+        </section>
+        
+    <?php endif; ?>

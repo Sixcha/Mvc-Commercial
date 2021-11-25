@@ -1,0 +1,17 @@
+<label for="search">Recherche article : </label>
+        <input type="text" id="search">
+        
+        <section class="list_articles" id="articles">
+            <?php foreach ($results as $result):?>
+                <article class="row">
+                    <img class="image_article" src="uploads/<?= $result['art_img'] ?>" alt="image">
+                    <div>
+                        <h5><?= htmlspecialchars($result['art_title']) ?></h5>
+                        <h6><?= htmlspecialchars($result['art_undertitle']) ?></h6>
+                        <p><?= nl2br(htmlspecialchars($result['art_description'])) ?></p>
+                        <p>Prix moyen constaté ( hors FDP ) : <?= htmlspecialchars($result['art_price']) ?>€</p>
+                        <p>Sortie prévue : <?= htmlspecialchars(date_format(date_create(($result['art_date'])), 'd/m/Y'))?></p>
+                    </div>
+                </article>
+            <?php endforeach; ?>
+        </section>

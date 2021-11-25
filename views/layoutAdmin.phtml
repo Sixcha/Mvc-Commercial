@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Dice</title>
+        <link rel="stylesheet" href="css/style.css" type="text/css" />
+    </head>
+    <body>
+        <header>
+            <h1>Dice Without Mice</h1>
+            <div class="column">
+                <img src="uploads/240_F_407209996_68D4aJrdvcGQsW90qZlWFZHfQVXq8Zu5.jpg"></img>
+            <?php if (isset($_SESSION["user"]) && isset($_SESSION["admin"]) && $_SESSION["admin"]==="ADMIN") : ?>
+            <div class="column">
+                <img src="<?="uploads/".$_SESSION["avatar"] ?>" alt="user avatar" class="useravi">
+                <p>Welcome,<?= $_SESSION["user"] ?></p>
+                <a href="index.php?route=disconnect">Déconnexion</a>
+                <a href="index.php?route=changePassword">Changer Mot de Passe</a>
+            </div>
+            <nav class="row spaced">
+                <a href="index.php?route=admin">Articles</a>
+                <a href="index.php?route=users">Utilisateurs</a>
+                <a href="index.php?route=addArticles">Add Articles</a>
+                <a href="index.php?route=deleteArticles">Delete Articles</a>
+            </nav>
+            <?php endif; ?>
+            
+            <a href="index.php">Retour au site original</a>
+            
+            </div>
+        </header>
+        
+        <main>
+            <?php include $template ?>
+        </main>
+        
+        <footer>
+            
+        </footer>
+        
+        <script src="js/script.js"></script>
+    </body>
+</html>

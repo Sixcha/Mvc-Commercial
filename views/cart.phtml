@@ -1,0 +1,32 @@
+<table>
+    <tr>
+        <td colspan="2"><p>Article</p></td>
+        <td><p>Quantité</p></td>
+        <td><p>Prix Individuel</p></td>
+        <td><p>Prix Total</p></td>
+    </tr>
+<?php foreach ($articles as $article) : ?>
+    <tr>
+        <td><img src="uploads/<?= $article["art_img"] ?>" alt=""></td>
+        <td><p><?= $article["art_title"] ?></p></td>
+        <td><p><?= $_SESSION["cookieQuantities"][$article["art_id"]] ?></p></td>
+        <td><p><?= $article["art_price"] ?> €</p></td>
+        <td><p><?= $_SESSION["cookieQuantities"][$article["art_id"]] * $article["art_price"] ?> €</p></td>
+        <td>
+            <form method="post">
+                <select name="removeQuantity" id="" value="Quantité" class="form" action="index.php?route=cart">
+                    <?php for ($i = 0; $i<$_SESSION["cookieQuantities"][$article["art_id"]]; $i++): ?>
+                    <option value="<?= $i+1 ?>"><?= $i+1 ?></option>
+                    <?php endfor ; ?>
+                    <input type="hidden" name="articleId" value="<?= htmlspecialchars($article["art_id"])?>"/>
+                </select>
+                <input type="submit" value="Enlever" class="form"/>
+            </form>
+        </td>
+    </tr>
+<?php endforeach ; ?>
+    <tr>
+        <td colspan="4"></td>
+        <td><p><?= $_SESSION["totalCost"] ?> €</p></td>
+    </tr>
+</table>

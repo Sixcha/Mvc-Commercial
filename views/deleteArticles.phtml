@@ -1,0 +1,11 @@
+<form  method="POST" action="index.php?route=deleteArticles">
+    <label for="articleDelete">Chossisez un article a supprimer</label>
+    
+    <select name="articleDelete" id="articleDelete">
+        <option value=""></option>
+        <?php foreach ($results as $result) :?>
+        <option value="<?= $result["art_title"]?>"><?= $result["art_title"]?></option>
+        <?php endforeach; ?>
+    </select>
+    <input type="submit" value="Delete Article" />
+</form>
